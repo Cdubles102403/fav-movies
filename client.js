@@ -1,5 +1,21 @@
 
-console.log(loadData())
+const data = loadData()
+console.log(data)
+const $moviesList = document.getElementById("moviesList")
+
+renderMovies()
+
+function renderMovies() {
+    data.movies.forEach(movie => {
+        const $movie = document.createElement("div")
+        $movie.innerHTML = `<h1>${movie.name}</h1>`
+        movie.reviews.forEach(review => {
+            $movie.innerHTML += `<li> rating: ${review.rating} by ${review.user.name}</li>`
+        })
+        $moviesList.append($movie)
+    })
+}
+
 
 
 function loadData() {
@@ -13,7 +29,7 @@ function loadData() {
         "genre" : "Action",
         "reviews" : [
             {
-                "rating" : 5,
+                "rating" : 3,
                 "like" : true,
                 "user" : {
                     "name" : "Jacob Schafer",
@@ -40,7 +56,7 @@ function loadData() {
         "genre" : "Sci-Fi",
         "reviews" : [
             {
-                "rating" : 5,
+                "rating" : 3,
                 "like" : true,
                 "user" : {
                     "name" : "Jacob Schafer",
@@ -49,8 +65,8 @@ function loadData() {
                 }
             },
             {
-                "rating" : 1,
-                "like" : false,
+                "rating" : 4,
+                "like" : true,
                 "user" : {
                     "name" : "Cody Schafer",
                     "gender" : "male",
